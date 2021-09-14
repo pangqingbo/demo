@@ -9,6 +9,9 @@
         ul{
             list-style: none;
         }
+        .list{
+            color: blue;
+        }
     </style>
     <script>
         window.onload = function (){
@@ -20,6 +23,16 @@
                 li.appendChild(text);
                 ul.appendChild(li);
                 index++;
+            }
+            var lis = document.getElementsByTagName("li");
+            for(i = 0; i<lis.length; i++){ 
+                lis[i].onclick = function(){
+                    if(this.className){
+                        this.className = "";
+                    }else{
+                        this.className = "list";
+                    }
+                }
             }
         }
     </script>
