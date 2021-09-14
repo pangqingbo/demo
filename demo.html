@@ -5,6 +5,176 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript">
+        /*
+        *function test(){
+        *    var message = "hi";
+        *}
+        *test();
+        *alert(message); //报错
+        */
+        /*
+        function test(){
+            message = "hi"; //全局变量,不推荐
+        }
+        test();
+        alert(message);  //输出hi
+        */
+
+        // var message = "hi",
+        //     found = false,
+        //     age = 29; 
+
+        // var message = "some thing";
+        // alert (typeof message); // "string"
+        // alert (typeof 95);  // "number"
+        // alert (typeof null);    // "object"
+
+        // var message;
+        // alert(message == undefined); //true
+
+        // var message;
+        // alert(message); //undefined
+        // alert(age); //报错
+
+        // var message;
+        // alert(typeof message); // "undefined"
+        // alert(typeof age); // "undefined"
+
+        // alert(null == undefined); // "true"
+
+        // var message = "hello world";
+        // alert(typeof message);
+        // var messageAsBoolean = Boolean(message);
+        // alert (typeof messageAsBoolean);
+        // alert (messageAsBoolean);
+
+        // var message = "hello world!";
+        // if (message){
+        //     alert("Value is true");
+        // }
+
+        // var floatNum = 3.1415926e7;
+        // alert(floatNum);
+
+        // var a = 0.1,
+        //     b = 0.2;
+        // alert(a+b);
+        // if (a+b == 0.3){    // 不要做这样做!!!
+        //     alert("you got 0.3");
+        // }else{
+        //     alert("you didn't get it");
+        // }
+
+        // var result = Number.MAX_VALUE + Number.MAX_VALUE;
+        // alert(isFinite(result)); //false
+        // var num = 47;
+        // alert(isFinite(num)); //true
+        // alert(Number.NEGATIVE_INFINITY);
+        // alert(Number.POSITIVE_INFINITY);
+        // alert(NaN == NaN); //false
+        // alert(isNaN(NaN)); //true,isNaN先将值转换为数值，不能被转换为数值的值会返回true
+        // alert(isNaN(10)); //false
+        // alert(isNaN("blue")); //true
+        // alert(isNaN("10")); //false
+        // var text = "1.2"; 
+        // // alert(Number(text));  //1.2
+        // text = "0xf";
+        // // alert(Number(text)); //15
+        // text = "12blue"; 
+        // alert(Number(text));  //NaN
+        // alert(Number("")); //0
+        // alert(parseInt("")); //NaN
+        // alert(parseInt("070")); //70
+        // alert(parseInt("070",8)); //56
+        // alert(parseInt("10",16)); //16
+        // alert(parseInt("0xf")); //15
+        // alert(parseFloat("0xf")); //0
+        // alert(parseFloat("1233blue")); //1233
+        // alert(parseFloat("22.5")); //22.5
+        // alert(parseFloat("22.34.5")); //22.34
+        // alert(parseFloat("0908.5")); //908.5
+        // alert(parseFloat("3.2187e5")); //321870
+
+        // var age = 11;
+        // var ageAsString = age.toString();
+        // var found = true;
+        // var foundAsString = found.toString();
+        // alert(ageAsString);
+        // alert(foundAsString);
+        // var num = 10;
+        // alert(num.toString()); //"10"
+        // alert(num.toString(2)); //"1010"
+        // alert(num.toString(8)); //"12"
+        // alert(num.toString(16)); //"a"
+        // alert(String(null)); //"null"
+        // alert(String(undefined)); //"undefined"
+        // var obj = null;
+        // alert(obj.toString()); //报错
+        // obj =undefined;
+        // alert(obj.toString()); //报错
+        
+        // var num1 = 2,
+        //     num2 = 20;
+        // var num3 = --num1 + num2; 
+        // var num4 = num1 + num2;
+        // alert(num3); //21
+        // alert(num4); //21
+
+        // var num1 = 2,
+        //     num2 = 20;
+        // var num3 = num1-- + num2; 
+        // var num4 = num1 + num2;
+        // alert(num3); //22
+        // alert(num4); //21
+
+        // var num = 20;
+        // alert(num++); //20
+
+        // var num = 20;
+        // alert(++num); //21
+
+        // var s1 = "2",
+        //     s2 = "12z",
+        //     b = false,
+        //     f = 1.1;
+        // var o = {
+        //     valueOf:function(){
+        //         return -1;
+        //     }
+        // };
+        // alert(++s1); //3
+        // alert(++s2); //NaN
+        // alert(++b); //1
+        // alert(--f); //0.10000000000000009(浮点舍入出错导致)
+        // alert(--o); //-2
+
+        //一元操作符+号和-号运用于非数值时，该操作符会像Number()一样对值进行转换
+
+        // var num1 = 25;
+        // var num2 = ~num1; //按位非
+        // alert(num2); //26
+        // 本质是操作数25的负值减1，但非运算是在底层用二进制算，所以会更快
+
+        // var num1 = 25;
+        // var num2 = -num1 - 1; 
+        // alert(num2); //26
+
+        // var num1 = -18; //1111 1111 1111 1111 1111 1111 1110 1110
+        // var num2 = -3; // 1111 1111 1111 1111 1111 1111 1111 1011
+        // var num3 = num1 & num2;//按位与，1111 1111 1111 1111 1111 1111 1110 1010
+        // alert(num3); //-20
+
+        /* var result = 25 | 3; //按位相与
+        alert(result); //27
+        result = 25 ^ 3; //异或^
+        alert(result); //26 */
+
+        // var oldValue = 2; //二进制的10
+        // var newValue = oldValue << 5; //二进制的1000000，十进制的64
+        // alert(newValue); //64
+        
+    </script>
 </head>
 <body>
     
