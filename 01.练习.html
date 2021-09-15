@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var scoreIn = document.querySelector("#scoreIn");
+            var submit = document.querySelector("#submit");
+            submit.onclick = function(){
+                var score = scoreIn.value;
+                switch(true){
+                    case score>=0 && score<60:
+                        alert("不及格");
+                        break;
+                    case score>=60 && score<=80:
+                        alert("及格");
+                        break;
+                    case score>80 && score<=100:
+                        alert("优秀");
+                        break;
+                    default:
+                        alert("请输入0-100之间的分数");
+                        break;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        <input type="text" id="scoreIn">
+        <button id="submit">提交</button>
+    </form>
+</body>
+</html>
