@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arr=[
+            {name:"aaa",id:"1"},
+            {name:"bbb",id:"2"},
+            {name:"ccc",id:"3"},
+            {name:"ddd",id:"4"},
+            {name:"eee",id:"5"},
+            {name:"fff",id:"6"},
+            {name:"ggg",id:"7"},
+            {name:"hhh",id:"8"},
+            {name:"iii",id:"9"},
+        ]
+        // 任务一 声明一个变量，此变量返回arr数组中name等于ddd的对象
+        var ddd = arr.find(obj => obj.name == "ddd");
+        // 任务二 声明一个变量，此变量返回过滤掉的id大于5的数组
+        var arr2 = arr.filter(obj => {
+            if(Number(obj.id) > 5){
+                return obj;
+            }
+        });
+        // 任务三 向arr数组内所有对象添加一项date，date的值是当前时间
+        for(var elem of arr.values()){
+            elem.date = Date();
+            alert(elem.id+","+elem.date);
+        }
+        // 任务四 map和forEach的区别
+        // map有返回值，forEach没有返回值
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
