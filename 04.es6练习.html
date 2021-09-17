@@ -19,19 +19,28 @@
         ]
         // 任务一 声明一个变量，此变量返回arr数组中name等于ddd的对象
         var ddd = arr.find(obj => obj.name == "ddd");
+
         // 任务二 声明一个变量，此变量返回过滤掉的id大于5的数组
-        var arr2 = arr.filter(obj => {
+        /* var arr2 = arr.filter(obj => {
             if(Number(obj.id) > 5){
                 return obj;
             }
-        });
+        }); */
+        var arr2 = arr.filter(obj => Number(obj.id) > 5 ? obj : "");
+
         // 任务三 向arr数组内所有对象添加一项date，date的值是当前时间
-        for(var elem of arr.values()){
-            elem.date = Date();
-            alert(elem.id+","+elem.date);
-        }
+        arr.forEach(obj => obj.date = Date());
+
         // 任务四 map和forEach的区别
         // map有返回值，forEach没有返回值
+        
+        // 任务五 声明一个变量，如果所有数组都存在id则返回true
+        var bol = arr.every(obj => obj.id);
+        // console.log(bol);
+
+        // 任务六 声明一个变量如果数组里面存在名字是bbb的则返回true
+        var bol2 = arr.some(obj => obj.name == "bbb");
+        // console.log(bol2);
     </script>
 </head>
 <body>
