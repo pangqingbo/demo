@@ -26,7 +26,8 @@
                 return obj;
             }
         }); */
-        var arr2 = arr.filter(obj => Number(obj.id) > 5 ? obj : "");
+        // var arr2 = arr.filter(obj => Number(obj.id) > 5 ? obj : "");
+        var arr2 = arr.filter(obj => obj.id > 5);
 
         // 任务三 向arr数组内所有对象添加一项date，date的值是当前时间
         arr.forEach(obj => obj.date = Date());
