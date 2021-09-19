@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            width: 290px;
+            border: 1px solid aqua;
+            margin: auto;
+            margin-top: 40px;
+        }
+        li{
+            list-style: none;
+            margin-left: 40px;
+        }
+        li::before{
+            content: '\f039';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: rgb(141, 138, 138);
+            margin-right: 10px;
+        }
+        ul li:first-child{
+            margin-left: 4px;
+        }
+        ul li:last-child::before{
+            content: "";
+            margin-right: 24px;
+        }
+        .fa-trash{
+            color: rgb(160, 158, 158);
+            float: right;
+            margin-right: 20px;
+        }
+        .fa-trash:hover{
+            color: aqua;
+        }
+        input[name = "inp"]{
+            color: gray;
+            width: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var input = document.querySelectorAll('input[name = "inp"]');
+            var multiSelect = document.querySelectorAll('.multiSelect');
+            var trash = document.querySelectorAll(".fa-trash");
+            var ul = document.querySelector("ul");
+            input.forEach(elem => {
+                elem.temp = elem.value;
+                elem.addEventListener("focus",() => elem.value = "");
+                elem.addEventListener("blur",() => elem.value = elem.temp);
+            });
+            input[1].addEventListener("keyup", function(event){
+                let code = event.keyCode;
+                let p = this.parentNode;
+                let li = document.createElement("li");
+                li.className = "multiSelect";
+                li.innerHTML = "<input type='checkbox'>"+this.value+"<a href='#' class='fas fa-trash'></a>";
+                code == 13 ? ul.insertBefore(li, p):"";
+            })
+            ul.addEventListener("click", e => {
+                if(e.target.className == "fas fa-trash"){
+                    let li = e.target.parentNode;
+                    ul.removeChild(li);
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li><input type="text" name="inp" value="Type here"></li>
+        <li class="multiSelect"><input type="checkbox">a<a href="#" class="fas fa-trash"></a></li>
+        <li class="multiSelect"><input type="checkbox">b<a href="#" class="fas fa-trash"></a></li>
+        <li class="multiSelect"><input type="checkbox">c<a href="#" class="fas fa-trash"></a></li>
+        <li class="multiSelect"><input type="checkbox">d<a href="#" class="fas fa-trash"></a></li>
+        <li class="multiSelect"><input type="checkbox">e<a href="#" class="fas fa-trash"></a></li>
+        <li class="multiSelect"><input type="checkbox">f<a href="#" class="fas fa-trash"></a></li>
+        <li class="multiSelect"><input type="checkbox">g<a href="#" class="fas fa-trash"></a></li>
+        <li><input type="text" name="inp" value="+ Add Option"></li>
+    </ul>
+</body>
+</html>
