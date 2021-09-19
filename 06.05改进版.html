@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            width: 320px;
+            border: 1px solid aqua;
+            margin: auto;
+            margin-top: 40px;
+            padding: 20px;
+        }
+        li{
+            list-style: none;
+        }
+        li::before{
+            content: '\f039';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: rgb(141, 138, 138);
+            margin-right: 10px;
+        }
+        .fa-trash{
+            color: rgb(160, 158, 158);
+            float: right;
+            margin-right: 21px;
+        }
+        .fa-trash:hover{
+            color: aqua;
+        }
+        #search,
+        #pushData{
+            color: gray;
+            width: 245px;
+            margin-right: 15px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var arr = [];
+            var addBtn = document.querySelector("#addBtn");
+            var pushData = document.querySelector("#pushData");
+            var ul = document.querySelector("ul");
+            // 当输入框获取焦点时清空输入框，当输入框失去焦点时恢复默认值
+            var inputBox = document.querySelectorAll("input[type = 'text']");
+            inputBox.forEach(elem => {
+                elem.temp = elem.value;
+                elem.addEventListener("focus",() => elem.value = "");
+                elem.addEventListener("blur",() => elem.value = elem.temp);
+            });
+            // 为添加列表项的输入框和按钮绑定响应事件
+            addBtn.addEventListener("click", () => addData(arr, "li", ul, '<input type="checkbox">'+pushData.value+'<a href="#" class="fas fa-trash"></a>'));
+            pushData.addEventListener("keyup", e => {
+                if(e.keyCode == 13){  
+                    addData(arr, "li", ul, '<input type="checkbox">'+pushData.value+'<a href="#" class="fas fa-trash"></a>')
+                }}
+            )
+            // 为删除键绑定单击响应事件
+            ul.addEventListener("click", e => {
+                if(e.target.className.search("fa-trash") >= 0){
+                    let li = e.target.parentNode;
+                    ul.removeChild(li);
+                }
+            })
+        }
+        function addData(arr, targetElem, parentElem, newDataStr){
+            arr.push(newDataStr);
+            let el = document.createElement(targetElem);
+            el.innerHTML = arr[arr.length-1];
+            parentElem.appendChild(el);
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        <input type="text" id="search" value="Type here">
+        <ul>
+            <li class="multiSelect"><input type="checkbox">a<a href="#" class="fas fa-trash"></a></li>
+            <li class="multiSelect"><input type="checkbox">b<a href="#" class="fas fa-trash"></a></li>
+            <li class="multiSelect"><input type="checkbox">c<a href="#" class="fas fa-trash"></a></li>
+            <li class="multiSelect"><input type="checkbox">d<a href="#" class="fas fa-trash"></a></li>
+            <li class="multiSelect"><input type="checkbox">e<a href="#" class="fas fa-trash"></a></li>
+            <li class="multiSelect"><input type="checkbox">f<a href="#" class="fas fa-trash"></a></li>
+            <li class="multiSelect"><input type="checkbox">g<a href="#" class="fas fa-trash"></a></li>
+        </ul>
+        <input type="text" id="pushData" value="+ Add Option">
+        <button id="addBtn">添加</button>
+    </form>
+</body>
+</html>

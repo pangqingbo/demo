@@ -68,8 +68,7 @@
                 code == 13 ? ul.insertBefore(li, p):"";
             })
             ul.addEventListener("click", e => {
-                let reg = /fa-trash/;
-                if(reg.test(e.target.className)){
+                if(e.target.className.search("fa-trash") >= 0){
                     let li = e.target.parentNode;
                     ul.removeChild(li);
                 }
