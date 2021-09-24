@@ -61,17 +61,17 @@
             data() {
                 return {
                     searchMsg: "",
-                    items: [{msg: 0, id: 0},{msg: 1, id: 1},{msg: 2, id: 2},{msg: 3, id: 3},{msg: 4, id: 4}]
+                    items: [{msg: "abd", id: 0},{msg: "djoqo", id: 1},{msg: "sakojjc", id: 2},{msg: "ksu9f", id: 3},{msg: "opbvtq", id: 4}],
+                    copyItems: [{msg: "abd", id: 0},{msg: "djoqo", id: 1},{msg: "sakojjc", id: 2},{msg: "ksu9f", id: 3},{msg: "opbvtq", id: 4}]
                 }
             },
             methods: {
-                // 搜索
-                
                 // 添加
                 addItem(e) {
                     e = event || window.event
                     let addInput = document.querySelector("#addElem")
                     this.items.push({msg: addInput.value, id: this.items.length})
+                    this.copyItems = this.items
                 },
                 // 删除
                 deleteItem(e) {
@@ -81,10 +81,12 @@
                 }
             },
             watch: {
-                searchMsg(newValue){
-                    this.items = this.items.filter(item => {
+                // 搜索
+                searchMsg(newValue, oldValue){
+                    this.items = this.copyItems.filter(item => {
                         return item.msg.search(newValue) >= 0
                     })
+                    console.log("hi")
                 }
             }
         }
