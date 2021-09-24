@@ -47,10 +47,10 @@
 </head>
 <body>
     <form action="" id="list">
-        <input type="text" id="search" placeholder="Type here">
-        <ul @click = "deleteLi">
-            <li v-for = "item in items">
-                <input type="checkbox">{{item.msg}}<a href="#" class="fas fa-trash"></a>
+        <input type="text" id="search" placeholder="Type here" @input = "searchItem" @blur = "empty">
+        <ul>
+            <li v-for = "item in items" :key = "item.id">
+                <input type="checkbox">{{item.msg}}<a href="#" class="fas fa-trash" @click = "deleteItem"></a>
             </li>
             <!-- <li class="multiSelect"><input type="checkbox">a<a href="#" class="fas fa-trash"></a></li>
             <li class="multiSelect"><input type="checkbox">b<a href="#" class="fas fa-trash"></a></li>
@@ -60,15 +60,35 @@
             <li class="multiSelect"><input type="checkbox">f<a href="#" class="fas fa-trash"></a></li>
             <li class="multiSelect"><input type="checkbox">g<a href="#" class="fas fa-trash"></a></li> -->
         </ul>
-        <input type="text" id="pushData" placeholder="+ Add Option" @keyup.enter.prevent = "addElem">
-        <button id="addBtn">添加</button>
+        <input type="text" id="addElem" placeholder="+ Add Option" @keyup.enter.once = "addItem" @blur = "empty">
+        <button id="addBtn" @click = "addItem">添加</button>
     </form>
     <script>
-        ul = document.querySelector("ul")
         const ListApp = {
             data() {
                 return {
-                    items: [{msg: 1},{msg: 2},{msg: 3},{msg: 4}]
+                    items: [{msg: 0, id: 0},{msg: 1, id: 1},{msg: 2, id: 2},{msg: 3, id: 3},{msg: 4, id: 4}]
+                }
+            },
+            methods: {
+                // 搜索
+                /* searchItem(e){
+                    this.items = this.items.filter(item => item.msg.search(""+e.target.value)) 
+                }, */
+                // 添加
+                addItem(e) {
+                    e = event || window.event
+                    let addInput = document.querySelector("#addElem")
+                    this.items.push({msg: addInput.value, id: this.items.length})
+                },
+                empty(e) {
+                    e.target.value = ""
+                },
+                // 删除
+                deleteItem(e) {
+                    let li = e.target.parentNode
+                    let ul = li.parentNode
+                    ul.removeChild(li)
                 }
             }
         }
