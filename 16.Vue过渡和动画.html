@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue/js/vue.js"></script>
+    <style>
+        #root div{
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            margin: auto;
+        }
+        button{
+            display: inline-block;
+            background-color: orangered;
+            border: none;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px;
+        }
+        .shake button{
+            outline: 1px dashed #fff;
+            outline-offset: -3px;
+        }
+        .shake{
+            animation: shake .5s;
+        }
+        @keyframes shake {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            10%,90% {
+                transform: translate3d(-1px, 0,0);
+            }
+            20%,80% {
+                transform: translate3d(2px, 0, 0);
+            }
+            30%,50%,70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+            40%,60% {
+                transform: translate3d(4px, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div :class="{ shake }">
+            <button @click="shake = true">Click me!</button>
+            <span v-if="shake">Oh no!</span>
+        </div>
+    </div>
+    <script>
+        const RootApp = {
+            data(){
+                return{
+                    shake: false
+                }
+            }
+        }
+        Vue.createApp(RootApp).mount("#root")
+    </script>
+</body>
+</html>

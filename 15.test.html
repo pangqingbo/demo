@@ -5,23 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./vue/js/vue.js"></script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
-    <div id="root">
-        <ul>
-            <li v-for = "item in items" :key = "item.id">{{item.value}}</li>
-        </ul>
-    </div>
-    <script>
-        const RootApp = {
-            data() {
-                return {
-                    items: [{value: "1", id: 1},{value: "2", id: 2}]
-                }
-            }
-        }
-        Vue.createApp(RootApp).mount("#root")
-    </script>
+    <div class="box"></div>
 </body>
 </html>

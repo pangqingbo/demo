@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 520px;
+            height: 300px;
+            margin: 0 auto;
+            background-color: orange;
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #imgList {
+            list-style: none;
+            /* width: 2600px; */
+            position: absolute;
+            /* left: -520px; */
+            left: 0;
+            transition: left 1s;
+        }
+
+        #imgList li {
+            float: left;
+            width: 500px;
+            height: 300px;
+            background-color: aqua;
+            margin: 0 10px;
+            font-size: 100px;
+        }
+
+        /* 设置导航按钮 */
+        #navDiv {
+            position: absolute;
+            bottom: 15px;
+        }
+
+        #navDiv a {
+            float: left;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            margin: 0 3px;
+            opacity: .5;
+        }
+
+        #navDiv a:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <ul id="imgList">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+        <!-- 创建导航按钮 -->
+        <div id="navDiv">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+    </div>
+    <script>
+        var imgList = document.querySelector("#imgList");
+        // 有多少个li就有多少个img
+        var imgArr = document.querySelectorAll("li");
+        // 假设每张图片的宽度均为520px，高度为300px，这里设置imgList的宽度
+        imgList.style.width = 520 * imgArr.length++ + "px";
+
+        // 设置导航按钮居中
+        // 获取navDiv
+        var navDiv = document.querySelector("#navDiv");
+        // 获取outer
+        var outer = document.querySelector("#outer");
+        // 设置navDiv的left值
+        navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+
+        // 默认选中的索引
+        var index = 0;
+        // 获取所有导航按钮的a
+        var allA = document.querySelectorAll("a");
+        // 设置默认选中的效果
+        allA[index].style.backgroundColor = "black";
+
+        // 点击超链接切换图片
+        for (let i = 0; i < allA.length; i++) {
+            allA[i].onclick = () => {
+                clearInterval(timer);
+                index = i;
+                imgList.style.left = -(520 * i) + "px";
+                setA();
+                setTimeout(() => {
+                    autoChange()
+                }, 1000)
+            }
+        }
+
+        // 创建一个方法用来设置选中的a
+        const setA = () => {
+            if(index >= imgArr.length-1){
+                index = 0;
+                imgList.style.left = 0;
+            }
+            for (let i = 0; i < allA.length; i++) {
+                allA[i].style.backgroundColor = "";
+            }
+            allA[index].style.backgroundColor = "black";
+        }
+
+        var timer;
+        const autoChange = () => {
+            timer = setInterval(() => {
+                index++;
+                imgList.style.left = -(520 * index) + "px";
+                setA();
+            },3000)
+        }
+        autoChange()
+    </script>
+</body>
+
+</html>
